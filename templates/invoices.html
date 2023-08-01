@@ -11,7 +11,7 @@
     <!-- Display invoices here using JavaScript -->
     <ul id="invoiceList" class="list-group"></ul>
     <hr>
-    <a href="/api" class="btn btn-primary">Back to Create Invoice</a>
+    <a href="{% url 'home' %}" class="btn btn-primary">Back to Create Invoice</a>
   </div>
 
   <!-- Add Bootstrap JS and your custom script -->
@@ -37,12 +37,31 @@
             data.forEach((invoice) => {
               const listItem = document.createElement("li");
               listItem.className = "list-group-item";
-              listItem.innerHTML = `<strong>Invoice Number:</strong> ${invoice.invoice_number}, <strong>Customer Name:</strong> ${invoice.customer_name}, <strong>Date:</strong> ${invoice.date}`;
+              listItem.innerHTML = `<a href="/api/specific_invoice/${invoice.invoice_number}" onclick="fetchInvoiceDetails(${invoice.invoice_number})"><strong>Invoice Number:</strong> ${invoice.invoice_number}, <strong>Customer Name:</strong> ${invoice.customer_name}, <strong>Date:</strong> ${invoice.date}</a>`;
               invoiceList.appendChild(listItem);
             });
           })
           .catch((error) => {
             console.error("Error fetching invoices:", error);
+          });
+      }
+
+      // Function to fetch invoice details by invoice number and redirect to the next page
+      function fetchInvoiceDetails(invoiceNumber) {
+        // Make a GET request to the Django API to fetch the specific invoice details
+        fetch(`http://127.0.0.1:8000/api/invoices/invoice/${invoiceNumber}/`, {
+          headers: {
+            "X-CSRFToken": getCookie("csrftoken"),
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Redirect to the next page with the fetched data as query parameters
+            const queryParams = new URLSearchParams(data).toString();
+            window.location.href = `/specific_invoice/${invoiceNumber}/?${queryParams}`;
+          })
+          .catch((error) => {
+            console.error("Error fetching invoice details:", error);
           });
       }
 
