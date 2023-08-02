@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- ... (head content remains the same) ... -->
+       <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Nested table styles */
+        td table {
+            width: 100%;
+            margin: 10px 0;
+            border-collapse: collapse;
+        }
+
+        td th, td td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container mt-4">
+    <h1>Invoice Details</h1>
+    <table>
+        <!-- ... (table header content remains the same) ... -->
+    </table>
+</div>
+
+<!-- Add Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Function to extract the last integer value from the URL
+    function extractInvoiceNumberFromURL() {
+      const url = window.location.href;
+      const parts = url.split("/");
+      return parseInt(parts[parts.length - 2]);
+    }
+
+    // Function to populate the "Invoice Details" table
+    function populateInvoiceDetailsTable(invoiceData) {
+      const table = document.querySelector("table");
+      // Clear the table body to prevent duplicate data
+      table.innerHTML = `
+        <tr>
+          <th>Invoice Number</th>
+          <th>Date</th>
+          <th>Customer Name</th>
+          <th>Invoice Details</th>
+        </tr>
+      `;
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${invoiceData.invoice_number}</td>
+        <td>${invoiceData.date}</td>
+        <td>${invoiceData.customer_name}</td>
+        <td>
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Price</th>
+            </tr>
+            ${invoiceData.invoice_details
+              .map(
+                (detail) =>
+                  `<tr>
+                    <td>${detail.id}</td>
+                    <td>${detail.description}</td>
+                    <td>${detail.quantity}</td>
+                    <td>${detail.unit_price}</td>
+                    <td>${detail.price}</td>
+                  </tr>`
+              )
+              .join("")}
+          </table>
+        </td>
+      `;
+      table.appendChild(row);
+    }
+
+    // On page load, extract the last integer value from the URL and make the API call
+    const invoiceNumber = extractInvoiceNumberFromURL();
+    fetch(`http://localhost:8000/api/invoices/invoice/${invoiceNumber}/`)
+      .then((response) => response.json())
+      .then((data) => {
+        populateInvoiceDetailsTable(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching invoice details:", error);
+      });
+  });
+</script>
+</body>
+</html>

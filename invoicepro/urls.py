@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("invoiceapp.urls")),
+    path('swagger_ui/', include('swagger_ui.urls')),
 ]

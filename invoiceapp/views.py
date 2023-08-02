@@ -14,3 +14,9 @@ def invoice_details_page(request):
 
 def invoices(request):
     return render(request, "invoices.html")
+
+
+def specific_invoice(request, pk):
+    invoice = InvoiceDetail.objects.filter(pk=pk)
+    context = {'invoice': invoice}
+    return render(request, 'specific_invoice.html', context)

@@ -31,7 +31,6 @@ class InvoiceDetailViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=["post"])
     def create_invoice_detail(self, request):
-        print(request.data, "iiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
