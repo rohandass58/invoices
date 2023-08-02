@@ -42,13 +42,7 @@ The Invoices Web Application is a feature-rich invoicing system built on Django 
 
     Open your web browser and go to http://localhost:8000/ to access the application.
 
-    Create a new invoice by clicking the "Create Invoice" button on the homepage. Fill in the required details and click "Save" to create the invoice.
 
-    View all invoices by going to the homepage, where you will see a list of all the created invoices. Click on an invoice to view its details.
-
-    Add invoice details when viewing an invoice. Click on the "Add Invoice Details" button and fill in the details to add them to the invoice.
-
-    Edit or delete invoices by clicking the "Edit" button to modify the invoice details or the "Delete" button to remove the invoice.
 
 
 
