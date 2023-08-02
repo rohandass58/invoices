@@ -1,6 +1,5 @@
 # Invoices Web Application
 
-![Invoices Logo](/path/to/logo.png)
 
 ## Introduction
 
