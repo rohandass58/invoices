@@ -86,7 +86,7 @@
       };
 
       // Make a POST request to the Django API to create a new invoice
-      fetch("http://localhost:8000/api/invoices/invoice/", {
+      fetch("/invoices/invoice/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

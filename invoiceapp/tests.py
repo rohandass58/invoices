@@ -16,7 +16,7 @@ class InvoiceAPITestCase(TestCase):
             "date": "2023-08-02",
             # Add other required fields as needed
         }
-        request = self.factory.post('/api/invoices/invoice/', data, format='json')
+        request = self.factory.post('/invoices/invoice/', data, format='json')
         view = InvoiceViewSet.as_view({'post': 'create'})
         response = view(request)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -31,7 +31,7 @@ class InvoiceAPITestCase(TestCase):
             "unit_price": 10.0,
             "price": 20.0,
         }
-        request = self.factory.post('/api/invoice_details/', data, format='json')
+        request = self.factory.post('/invoice_details/', data, format='json')
         view = InvoiceDetailViewSet.as_view({'post': 'create'})
         response = view(request)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -58,7 +58,7 @@ class InvoiceAPITestCase(TestCase):
                 }
             ]
         }
-        request = self.factory.post(f'/api/invoices/{invoice.pk}/add_invoice_details/', data, format='json')
+        request = self.factory.post(f'/invoices/{invoice.pk}/add_invoice_details/', data, format='json')
         view = InvoiceViewSet.as_view({'post': 'add_invoice_details'})
         response = view(request, pk=invoice.pk)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)

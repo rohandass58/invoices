@@ -19,7 +19,7 @@
   <script>
     function fetchInvoiceDetails(invoiceNumber) {
       // Make a GET request to the Django API to fetch the specific invoice details
-      fetch(`http://localhost:8000/api/invoices/invoice/${invoiceNumber}/`, {
+      fetch(`/invoices/invoice/${invoiceNumber}/`, {
         headers: {
           "X-CSRFToken": getCookie("csrftoken"),
         },
@@ -41,7 +41,7 @@
       // Function to fetch and display invoices
       function getInvoices() {
         // Make a GET request to the Django API to fetch invoices
-        fetch("http://localhost:8000/api/invoices/invoice/", {
+        fetch("/invoices/invoice/", {
           headers: {
             "X-CSRFToken": getCookie("csrftoken"),
           },
@@ -55,7 +55,7 @@
             data.forEach((invoice) => {
               const listItem = document.createElement("li");
               listItem.className = "list-group-item";
-              listItem.innerHTML = `<a href="/api/specific_invoice/${invoice.invoice_number}" onclick="fetchInvoiceDetails(${invoice.invoice_number})"><strong>Invoice Number:</strong> ${invoice.invoice_number}, <strong>Customer Name:</strong> ${invoice.customer_name}, <strong>Date:</strong> ${invoice.date}</a>`;
+              listItem.innerHTML = `<a href="/specific_invoice/${invoice.invoice_number}" onclick="fetchInvoiceDetails(${invoice.invoice_number})"><strong>Invoice Number:</strong> ${invoice.invoice_number}, <strong>Customer Name:</strong> ${invoice.customer_name}, <strong>Date:</strong> ${invoice.date}</a>`;
               invoiceList.appendChild(listItem);
             });
           })

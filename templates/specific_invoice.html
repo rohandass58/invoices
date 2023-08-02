@@ -125,7 +125,7 @@
 
     // On page load, extract the last integer value from the URL and make the API call
     const invoiceNumber = extractInvoiceNumberFromURL();
-    fetch(`http://localhost:8000/api/invoices/invoice/${invoiceNumber}/`)
+    fetch(`/invoices/invoice/${invoiceNumber}/`)
       .then((response) => response.json())
       .then((data) => {
         populateInvoiceDetailsTable(data);
