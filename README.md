@@ -20,7 +20,7 @@ The Invoices Web Application is a feature-rich invoicing system built on Django 
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/invoices.git
+   git clone git@github.com:rohandass58/invoices.git
    
 2. Create a virtual environment and activate it:
     ```bash
@@ -32,7 +32,7 @@ The Invoices Web Application is a feature-rich invoicing system built on Django 
    cd invoices
 5. Install the required dependencies:
    ```bash
-   pip ibstall -r requirements.txt
+   pip install -r requirements.txt
 
 ## Usage
 
@@ -50,22 +50,7 @@ The Invoices Web Application is a feature-rich invoicing system built on Django 
 
     Edit or delete invoices by clicking the "Edit" button to modify the invoice details or the "Delete" button to remove the invoice.
 
-## API Endpoints
 
-The application also provides RESTful APIs for programmatic access to invoices and details. Below are the main API endpoints:
-
-    GET /api/invoices/: Retrieve a list of all invoices.
-    POST /api/invoices/: Create a new invoice.
-    GET /api/invoices/<invoice_id>/: Retrieve details of a specific invoice.
-    PUT /api/invoices/<invoice_id>/: Update details of a specific invoice.
-    DELETE /api/invoices/<invoice_id>/: Delete a specific invoice.
-    GET /api/invoice_details/: Retrieve a list of all invoice details.
-    POST /api/invoice_details/: Create a new invoice detail.
-    GET /api/invoice_details/<invoice_detail_id>/: Retrieve details of a specific invoice detail.
-    PUT /api/invoice_details/<invoice_detail_id>/: Update details of a specific invoice detail.
-    DELETE /api/invoice_details/<invoice_detail_id>/: Delete a specific invoice detail.
-
-For more information on API usage and authentication, please refer to the API documentation.
 
 
 
