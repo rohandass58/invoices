@@ -41,7 +41,13 @@ The Invoices Web Application is a feature-rich invoicing system built on Django 
     python manage.py runserver
 
     Open your web browser and go to http://localhost:8000/ to access the application.
+    
+## API ENDPOINTS
 
+{
+    "invoice": "http://127.0.0.1:8000/invoices/invoice/",
+    "invoice_detail": "http://127.0.0.1:8000/invoices/invoice_detail/"
+}
 
 
 
